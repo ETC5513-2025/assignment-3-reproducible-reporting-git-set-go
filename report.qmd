@@ -52,3 +52,20 @@ Figure @fig-temp-boxplot displays the 3pm temperature distribution by observatio
 Tropical and desert climate conditions are reflected in the highest and most stable afternoon temperatures found in cities like **Darwin** and **Alice Springs**. Smaller interquartile ranges are seen in these cities, suggesting hot, consistent weather that is typical of the area. Conversely, cities with temperate, coastal climates, such as **Hobart**, **Melbourne**, and **Sydney**, show higher variability and cooler median temperatures. Cities like **Perth** and **Brisbane** have outliers, indicating sporadic excessive temperature events that may be caused by particular weather systems.
 
 All things considered, the boxplot illustrates how Australia's varied topography affects temperature distributions. While southern and coastal towns exhibit milder and more diverse climates, northern cities are often hotter and more stable. These findings show how latitude, altitude, and proximity to the coast affect temperature trends and are consistent with the anticipated climatic variation throughout Australia.
+
+```{r}
+#| label: fig-temp-boxplot
+#| fig-cap: "Distribution of 3pm temperatures across the top 10 Australian cities by observation count, highlighting differences between tropical and temperate regions."
+
+top10 <- data %>%
+  count(Location, sort = TRUE) %>%
+  slice_head(n = 10) %>%
+  pull(Location)
+
+data %>%
+  filter(Location %in% top10) %>%
+  ggplot(aes(x = Location, y = Temp3pm)) +
+  geom_boxplot(fill = "pink") +
+  labs(x = "City", y = "Temperature at 3pm (°C)") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```

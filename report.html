@@ -162,9 +162,34 @@ date  (1): Date
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
-<p>Figure <strong>?@fig-temp-boxplot</strong> displays the 3pm temperature distribution by observation count for the top 10 Australian cities. The tropical, desert, and temperate regions of Australia are clearly distinguished by this research.</p>
+<p>Figure <a href="#fig-temp-boxplot" class="quarto-xref">Figure&nbsp;1</a> displays the 3pm temperature distribution by observation count for the top 10 Australian cities. The tropical, desert, and temperate regions of Australia are clearly distinguished by this research.</p>
 <p>Tropical and desert climate conditions are reflected in the highest and most stable afternoon temperatures found in cities like <strong>Darwin</strong> and <strong>Alice Springs</strong>. Smaller interquartile ranges are seen in these cities, suggesting hot, consistent weather that is typical of the area. Conversely, cities with temperate, coastal climates, such as <strong>Hobart</strong>, <strong>Melbourne</strong>, and <strong>Sydney</strong>, show higher variability and cooler median temperatures. Cities like <strong>Perth</strong> and <strong>Brisbane</strong> have outliers, indicating sporadic excessive temperature events that may be caused by particular weather systems.</p>
 <p>All things considered, the boxplot illustrates how Australia’s varied topography affects temperature distributions. While southern and coastal towns exhibit milder and more diverse climates, northern cities are often hotter and more stable. These findings show how latitude, altitude, and proximity to the coast affect temperature trends and are consistent with the anticipated climatic variation throughout Australia.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Location, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Location)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Location <span class="sc">%in%</span> top10) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Location, <span class="at">y =</span> Temp3pm)) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"pink"</span>) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"City"</span>, <span class="at">y =</span> <span class="st">"Temperature at 3pm (°C)"</span>) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-temp-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-temp-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="report_files/figure-html/fig-temp-boxplot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-temp-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Distribution of 3pm temperatures across the top 10 Australian cities by observation count, highlighting differences between tropical and temperate regions.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 
 </main>
