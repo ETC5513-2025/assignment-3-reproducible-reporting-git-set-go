@@ -3,3 +3,53 @@ title: "git set go"
 format: html
 editor: visual
 ---
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r}
+# Load the dataset
+data <- read.csv("data/weatherAUS.csv")
+```
+
+```{r}
+# 1. Drop high-missing columns
+data <- data %>%
+  select(-Evaporation, -Sunshine, -Cloud9am, -Cloud3pm)
+```
+
+```{r}
+# 2. Convert 'Date' to Date type
+data <- data %>%
+  mutate(Date = ymd(Date))
+```
+
+```{r}
+# 3. Drop rows where 'RainTomorrow' is missing
+data <- data %>%
+  filter(!is.na(RainTomorrow))
+```
+
+
+```{r}
+# 4. Drop wind direction columns
+data <- data %>%
+  select(-WindGustDir, -WindDir9am, -WindDir3pm)
+
+# 5. Convert RainToday and RainTomorrow to binary 0/1
+data <- data %>%
+  mutate(
+    RainToday = if_else(RainToday == "Yes", 1, 0),
+    RainTomorrow = if_else(RainTomorrow == "Yes", 1, 0)
+  )
+
+# 6. Drop any remaining NAs
+data <- data %>% drop_na()
+```
+
+```{r}
+# 7. Save cleaned data
+write_csv(data, "data/data_cleaned.csv")
+```
