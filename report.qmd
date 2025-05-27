@@ -13,3 +13,7 @@ bibliography: references.bib
 ## Executive Summary
 
 This report analyzes weather patterns across major Australian cities using the [Rattle weather dataset](https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package/data). Key variables such as temperature, rainfall, and humidity,... were compared to uncover regional climate differences. The findings reveal distinct climate characteristics aligned with Australia’s diverse geography. These insights can support planning in agriculture, infrastructure, and public health.
+
+## Introduction
+
+Australia is known for its diverse climates, ranging from tropical in the north to temperate in the south. This variability impacts agriculture, urban planning, and public health. In this report, we compare weather characteristics across eight Australian cities using daily data from the weatherAUS dataset. The selected cities represent different climate zones, including tropical (Darwin), arid (Adelaide), and temperate (Melbourne, Hobart). The dataset includes over 10 years of weather observations, providing a robust basis for analysis. Key variables of interest are temperature, rainfall, humidity, presurre. These metrics reflect both short- and long-term climate trends. Through visualization and descriptive statistics, we uncover patterns that align with geographical locations. This work aims to support informed, location-specific decision-making. All analysis is reproducible using R and Quarto.
