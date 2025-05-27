@@ -53,3 +53,20 @@ data <- data %>% drop_na()
 # 7. Save cleaned data
 write_csv(data, "data/data_cleaned.csv")
 ```
+
+
+
+# Methodology
+
+The dataset used for this analysis, weatherAUS.csv, contains over 120,000 daily weather observations recorded across various Australian cities. To ensure data quality and usability, we cleaned the dataset by removing columns with a high number of missing values, such as Evaporation and Sunshine, and imputing the remaining missing values using the median for numerical variables. Categorical variables were imputed using the mode, where necessary. Wind direction columns were excluded due to their limited relevance to the city-level comparative focus. The resulting cleaned dataset, consisting of 16 variables, enabled us to conduct meaningful comparisons of weather characteristics across regions.
+
+The analysis focused on four primary variables: **Rainfall**, **Temperature at 3pm**, **Humidity at 3pm**, and **Pressure at 9am** chosen to represent precipitation, thermal patterns, atmospheric moisture, and pressure systems respectively. The data was grouped by `Location`, enabling city-wise summary statistics and comparisons. To ensure consistency and reduce noise, we focused on cities with the highest number of observations.
+
+To visualize precipitation differences across cities, we generated a bar plot of the ten cities with the highest average daily rainfall (@fig-rainfall-bar). This figure highlights distinct tropical patterns, especially in Darwin and Cairns. To complement the visual insight, a detailed summary of weather metrics including temperature, humidity, and pressure for these top 10 wettest cities is presented in @tbl-summary-top10.
+
+In addition to rainfall-focused analysis, we also summarized the key weather variables for the ten cities with the most complete data overall. This is shown in @tbl-city-summary, which provides a broader snapshot of Australia's most represented locations in the dataset.
+
+All analysis was conducted using the `tidyverse` and `ggplot2` packages in R, structured within a reproducible Quarto project. GitHub was used to manage version control and collaboration, with each contributor working in individual branches.
+
+
+
