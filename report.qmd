@@ -7,8 +7,6 @@ toc: true
 toc-title: "Table of Contents"
 toc-depth: 2
 number-sections: true
-cite-method: biblatex
-bibliography: references.bib
 ---
 
 ## Executive Summary
@@ -50,3 +48,16 @@ In summary, the climate of Australian cities varies significantly by location. N
     -   **Explore Extreme Events**: Analyse maximum rainfall or temperature to assess weather extremes and risks.
 
     -   **Forecast rain tomorrow**: Predict whether it will rain tomorrow based on other variables from previous records.
+    
+## References
+Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R,
+  Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller
+  E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V,
+  Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to
+  the tidyverse.” _Journal of Open Source Software_, *4*(43), 1686.
+  doi:10.21105/joss.01686 <https://doi.org/10.21105/joss.01686>.
+  
+H. Wickham. ggplot2: Elegant Graphics for Data Analysis.
+  Springer-Verlag New York, 2016.
+  
+Young JS (2017). “Weather Dataset (Rattle Package).” Kaggle Datasets. Retrieved from https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package/data
