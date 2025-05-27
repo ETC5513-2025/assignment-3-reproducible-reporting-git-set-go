@@ -14,6 +14,12 @@ format:
     fig-cap-location: bottom
     df-print: kable
     keep-tex: true
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    df-print: kable
+    code-line-numbers: false
 editor: visual
 ---
 
@@ -38,6 +44,7 @@ These metrics reflect both short- and long-term climate trends. Through visualiz
 #| message: false
 #| warning: false
 #| echo: false
+# Loading Libraries and Reading the Data
 library(tidyverse)
 library(ggplot2)
 ```
@@ -64,7 +71,6 @@ data <- data %>%
 data <- data %>%
   filter(!is.na(RainTomorrow))
 ```
-
 
 ```{r}
 # 4. Drop wind direction columns
@@ -98,7 +104,6 @@ To visualize precipitation differences across cities, we generated a bar plot of
 
 All analysis was conducted using the tidyverse and ggplot2 packages in R, structured within a reproducible Quarto project. GitHub was used to manage version control and collaboration, with each contributor working in individual branches.
 
-
 ```{r}
 #| label: fig-rainfall-bar
 #| fig-cap: "Top 10 cities by average daily rainfall (mm)"
@@ -131,6 +136,33 @@ data %>%
   ) %>%
   knitr::kable()
 ```
+
+# Results
+
+Figure @fig-temp-boxplot displays the 3pm temperature distribution by observation count for the top 10 Australian cities. The tropical, desert, and temperate regions of Australia are clearly distinguished by this research.
+
+Tropical and desert climate conditions are reflected in the highest and most stable afternoon temperatures found in cities like **Darwin** and **Alice Springs**. Smaller interquartile ranges are seen in these cities, suggesting hot, consistent weather that is typical of the area. Conversely, cities with temperate, coastal climates, such as **Hobart**, **Melbourne**, and **Sydney**, show higher variability and cooler median temperatures. Cities like **Perth** and **Brisbane** have outliers, indicating sporadic excessive temperature events that may be caused by particular weather systems.
+
+All things considered, the boxplot illustrates how Australia's varied topography affects temperature distributions. While southern and coastal towns exhibit milder and more diverse climates, northern cities are often hotter and more stable. These findings show how latitude, altitude, and proximity to the coast affect temperature trends and are consistent with the anticipated climatic variation throughout Australia.
+
+```{r}
+#| label: fig-temp-boxplot
+#| fig-cap: "Distribution of 3pm temperatures across the top 10 Australian cities by observation count, highlighting differences between tropical and temperate regions."
+
+top10 <- data %>%
+  count(Location, sort = TRUE) %>%
+  slice_head(n = 10) %>%
+  pull(Location)
+
+data %>%
+  filter(Location %in% top10) %>%
+  ggplot(aes(x = Location, y = Temp3pm)) +
+  geom_boxplot(fill = "pink") +
+  labs(x = "City", y = "Temperature at 3pm (°C)") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+As shown in @fig-temp-boxplot cities such as Darwin and Alice Springs experience the highest and most consistent afternoon temperatures. On the other hand, Melbourne and Hobart show cooler and more varied temperature distributions. This supports the expected climatic variation between Australia's tropical north and temperate south.
 
 
 # Discussion
@@ -178,4 +210,7 @@ H. Wickham. ggplot2: Elegant Graphics for Data Analysis.
   Springer-Verlag New York, 2016.
   
 Young JS (2017). “Weather Dataset (Rattle Package).” Kaggle Datasets. Retrieved from https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package/data
+
+
+
 

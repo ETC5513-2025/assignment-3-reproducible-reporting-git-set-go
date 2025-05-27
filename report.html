@@ -11,7 +11,7 @@
 <meta name="author" content="Thi Lan Anh Tran">
 <meta name="dcterms.date" content="2025-05-27">
 
-<title>Git Set Go</title>
+<title>Weather Comparison Across Australian Cities</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,8 +83,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#cleaning-the-data" id="toc-cleaning-the-data" class="nav-link active" data-scroll-target="#cleaning-the-data"><span class="header-section-number">1</span> Cleaning the data</a></li>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology"><span class="header-section-number">2</span> Methodology</a></li>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary"><span class="header-section-number">1</span> Executive Summary</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">2</span> Introduction</a></li>
+  <li><a href="#cleaning-the-data" id="toc-cleaning-the-data" class="nav-link" data-scroll-target="#cleaning-the-data"><span class="header-section-number">3</span> Cleaning the data</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology"><span class="header-section-number">4</span> Methodology</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">5</span> Results</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">6</span> Discussion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7</span> Conclusion</a></li>
+  <li><a href="#recommendations" id="toc-recommendations" class="nav-link" data-scroll-target="#recommendations"><span class="header-section-number">8</span> Recommendations</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">9</span> References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -92,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Git Set Go</h1>
+<h1 class="title">Weather Comparison Across Australian Cities</h1>
 </div>
 
 
@@ -123,8 +130,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="cleaning-the-data" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Cleaning the data</h1>
+<div style="page-break-after: always;"></div>
+<section id="executive-summary" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Executive Summary</h1>
+<p>This report analyzes weather patterns across major Australian cities using the <a href="https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package/data">Rattle weather dataset</a>. Key variables such as temperature, rainfall, and humidity were compared to uncover regional climate differences. The findings reveal distinct climate characteristics aligned with Australia’s diverse geography. These insights can support climate planning, tourism, lifestyle decisions, and future research.</p>
+</section>
+<section id="introduction" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Introduction</h1>
+<p>Australia is known for its diverse climates, ranging from tropical in the north to temperate in the south. This variability impacts agriculture, urban planning, and public health.</p>
+<p>In this report, we compare weather characteristics across ten Australian cities using daily data from the weatherAUS dataset. The selected cities represent different climate zones, including tropical (Darwin), arid (Adelaide), and temperate (Melbourne, Hobart). The dataset includes over 10 years of weather observations, providing a robust basis for analysis. Key variables of interest are temperature, rainfall, humidity, and pressure.</p>
+<p>These metrics reflect both short- and long-term climate trends. Through visualization and descriptive statistics, we uncover patterns that align with geographical locations. This work aims to support informed, location-specific decision-making. All analysis is reproducible using R and Quarto.</p>
+</section>
+<section id="cleaning-the-data" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Cleaning the data</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/weatherAUS.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -164,12 +182,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(data, <span class="st">"data/data_cleaned.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="methodology" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Methodology</h1>
-<p>The dataset used for this analysis, weatherAUS.csv, contains over 120,000 daily weather observations recorded across various Australian cities. To ensure data quality and usability, we cleaned the dataset by removing columns with a high number of missing values, such as Evaporation and Sunshine, and imputing the remaining missing values using the median for numerical variables. Categorical variables were imputed using the mode, where necessary. Wind direction columns were excluded due to their limited relevance to the city-level comparative focus. The resulting cleaned dataset, consisting of 16 variables, enabled us to conduct meaningful comparisons of weather characteristics across regions.</p>
-<p>The analysis focused on four primary variables: <strong>Rainfall</strong>, <strong>Temperature at 3pm</strong>, <strong>Humidity at 3pm</strong>, and <strong>Pressure at 9am</strong> chosen to represent precipitation, thermal patterns, atmospheric moisture, and pressure systems respectively. The data was grouped by <code>Location</code>, enabling city-wise summary statistics and comparisons. To ensure consistency and reduce noise, we focused on cities with the highest number of observations.</p>
-<p>To visualize precipitation differences across cities, we generated a bar plot of the ten cities with the highest average daily rainfall (<a href="#fig-rainfall-bar" class="quarto-xref">Figure&nbsp;1</a>). This figure highlights distinct tropical patterns, especially in Darwin and Cairns. To complement the visual insight, a detailed summary of weather metrics including temperature, humidity, and pressure for these top 10 wettest cities is presented in <a href="#tbl-summary-top10" class="quarto-xref">Table&nbsp;1</a>.</p>
-<p>All analysis was conducted using the <code>tidyverse</code> and <code>ggplot2</code> packages in R, structured within a reproducible Quarto project. GitHub was used to manage version control and collaboration, with each contributor working in individual branches.</p>
+<section id="methodology" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Methodology</h1>
+<p>The dataset used for this analysis, weatherAUS.csv, contains over 120,000 daily weather observations recorded across various Australian cities. To ensure data quality, we removed columns with extensive missing values, such as Evaporation and Sunshine, and dropped any remaining rows with missing values to preserve analysis integrity. Wind direction columns were excluded due to their limited relevance to the city-level comparative focus. The resulting cleaned dataset, consisting of 16 variables, enabled meaningful comparisons of weather characteristics across regions.</p>
+<p>The analysis focused on four primary variables: <em>Rainfall, Temperature at 3pm, Humidity at 3pm, and Pressure at 9am</em>. These were chosen to represent precipitation, thermal patterns, atmospheric moisture, and pressure systems respectively. The data was grouped by Location, enabling city-wise summary statistics and comparisons. To ensure consistency and reduce noise, we focused on cities with the highest number of observations.</p>
+<p>To visualize precipitation differences across cities, we generated a bar plot of the ten cities with the highest average daily rainfall (<a href="#fig-rainfall-bar" class="quarto-xref">Figure&nbsp;1</a>). This figure highlights distinct tropical patterns, especially in Darwin and Cairns. To complement this, a detailed summary of weather metrics including temperature, humidity, and pressure for these top 10 wettest cities is presented in Table <a href="#tbl-summary-top10" class="quarto-xref">Table&nbsp;1</a></p>
+<p>All analysis was conducted using the tidyverse and ggplot2 packages in R, structured within a reproducible Quarto project. GitHub was used to manage version control and collaboration, with each contributor working in individual branches.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>top_rainfall <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Location) <span class="sc">%&gt;%</span></span>
@@ -309,6 +327,72 @@ Table&nbsp;1: Summary of key weather variables in top 10 wettest cities
 </figure>
 </div>
 </div>
+</section>
+<section id="results" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Results</h1>
+<p>Figure <a href="#fig-temp-boxplot" class="quarto-xref">Figure&nbsp;2</a> displays the 3pm temperature distribution by observation count for the top 10 Australian cities. The tropical, desert, and temperate regions of Australia are clearly distinguished by this research.</p>
+<p>Tropical and desert climate conditions are reflected in the highest and most stable afternoon temperatures found in cities like <strong>Darwin</strong> and <strong>Alice Springs</strong>. Smaller interquartile ranges are seen in these cities, suggesting hot, consistent weather that is typical of the area. Conversely, cities with temperate, coastal climates, such as <strong>Hobart</strong>, <strong>Melbourne</strong>, and <strong>Sydney</strong>, show higher variability and cooler median temperatures. Cities like <strong>Perth</strong> and <strong>Brisbane</strong> have outliers, indicating sporadic excessive temperature events that may be caused by particular weather systems.</p>
+<p>All things considered, the boxplot illustrates how Australia’s varied topography affects temperature distributions. While southern and coastal towns exhibit milder and more diverse climates, northern cities are often hotter and more stable. These findings show how latitude, altitude, and proximity to the coast affect temperature trends and are consistent with the anticipated climatic variation throughout Australia.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Location, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Location)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Location <span class="sc">%in%</span> top10) <span class="sc">%&gt;%</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Location, <span class="at">y =</span> Temp3pm)) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"pink"</span>) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"City"</span>, <span class="at">y =</span> <span class="st">"Temperature at 3pm (°C)"</span>) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-temp-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-temp-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="report_files/figure-html/fig-temp-boxplot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-temp-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Distribution of 3pm temperatures across the top 10 Australian cities by observation count, highlighting differences between tropical and temperate regions.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As shown in <a href="#fig-temp-boxplot" class="quarto-xref">Figure&nbsp;2</a> cities such as Darwin and Alice Springs experience the highest and most consistent afternoon temperatures. On the other hand, Melbourne and Hobart show cooler and more varied temperature distributions. This supports the expected climatic variation between Australia’s tropical north and temperate south.</p>
+</section>
+<section id="discussion" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Discussion</h1>
+<p>This analysis highlights the significant climatic diversity across Australian cities:</p>
+<ul>
+<li><p><strong>Rainfall Patterns</strong>: Cities in tropical and coastal regions, such as Cairns and Darwin, receive the highest average rainfall (see <a href="#fig-rainfall-bar" class="quarto-xref">Figure&nbsp;1</a>), confirming the impact of geography on precipitation. The consistent presence of coastal cities in the top 10 list indicates the influence of sea moisture and oceanic weather systems.</p></li>
+<li><p><strong>Temperature and Humidity</strong>: Tropical cities like Darwin and Cairns are not only warmer but also exhibit less variability in daily temperatures. This is typical for equatorial climates. In contrast, temperate cities such as Melbourne and Hobart experience cooler and more fluctuating weather, influenced by dynamic weather fronts.</p></li>
+<li><p><strong>Air Pressure Observations</strong>: Most cities show similar atmospheric pressure, except Darwin, where lower pressure may contribute to the region’s tropical climate and higher rainfall.</p></li>
+<li><p><strong>Temperature Distribution</strong>: The boxplot reinforces (see <a href="#fig-temp-boxplot" class="quarto-xref">Figure&nbsp;2</a>) how geography affects temperature: inland cities are hot and stable, while southern cities are cooler and more variable. Outliers and wider spreads reflect occasional weather extremes in cities like Melbourne and Sydney.</p></li>
+</ul>
+</section>
+<section id="conclusion" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Conclusion</h1>
+<p>In summary, the climate of Australian cities varies significantly by location. Northern and inland areas such as Darwin and Alice Springs are warmer and more stable in temperature, while southern and coastal cities like Melbourne, Hobart, and Sydney exhibit cooler, more variable weather. High rainfall is concentrated in tropical and coastal regions, confirming expected climate zones. These findings align with known climate patterns across the country.</p>
+</section>
+<section id="recommendations" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Recommendations</h1>
+<ul>
+<li><p><strong>For Climate Planning</strong>: City planners and infrastructure developers should consider local rainfall and temperature variability when designing drainage systems, buildings, and energy systems—especially in high-rainfall cities like Cairns and Darwin.</p></li>
+<li><p><strong>For Tourism and Lifestyle Choices</strong>: Tourists and residents seeking stable warm weather may prefer Darwin or Alice Springs. Those sensitive to temperature variability may find southern cities less comfortable.</p></li>
+<li><p><strong>For Future Research</strong>:</p>
+<ul>
+<li><p><strong>Incorporate Time Dimension</strong>: Explore seasonal or monthly trends to observe how rainfall and temperature vary over time.</p></li>
+<li><p><strong>Visualise More Variables</strong>: Add plots for humidity, temperature, or pressure to deepen comparison across cities.</p></li>
+<li><p><strong>Explore Extreme Events</strong>: Analyse maximum rainfall or temperature to assess weather extremes and risks.</p></li>
+<li><p><strong>Forecast rain tomorrow</strong>: Predict whether it will rain tomorrow based on other variables from previous records.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="references" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> References</h1>
+<p>Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686. doi:10.21105/joss.01686 <a href="https://doi.org/10.21105/joss.01686" class="uri">https://doi.org/10.21105/joss.01686</a>.</p>
+<p>H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.</p>
+<p>Young JS (2017). “Weather Dataset (Rattle Package).” Kaggle Datasets. Retrieved from https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package/data</p>
 </section>
 
 </main>
