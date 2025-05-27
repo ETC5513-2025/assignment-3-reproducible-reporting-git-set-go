@@ -1,10 +1,28 @@
 ---
-title: "git set go"
-format: html
+
+title: "Git Set Go"
+author: 
+  - Siddhi Jadhav
+  - Sanch Anand
+  - Thi Lan Anh Tran
+date: today
+format: 
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    fig-cap-location: bottom
+    df-print: kable
+    keep-tex: true
 editor: visual
 ---
 
+# Cleaning the data 
+
 ```{r}
+#| message: false
+#| warning: false
+#| echo: false
 library(tidyverse)
 library(ggplot2)
 ```
@@ -64,9 +82,39 @@ The analysis focused on four primary variables: **Rainfall**, **Temperature at 3
 
 To visualize precipitation differences across cities, we generated a bar plot of the ten cities with the highest average daily rainfall (@fig-rainfall-bar). This figure highlights distinct tropical patterns, especially in Darwin and Cairns. To complement the visual insight, a detailed summary of weather metrics including temperature, humidity, and pressure for these top 10 wettest cities is presented in @tbl-summary-top10.
 
-In addition to rainfall-focused analysis, we also summarized the key weather variables for the ten cities with the most complete data overall. This is shown in @tbl-city-summary, which provides a broader snapshot of Australia's most represented locations in the dataset.
-
 All analysis was conducted using the `tidyverse` and `ggplot2` packages in R, structured within a reproducible Quarto project. GitHub was used to manage version control and collaboration, with each contributor working in individual branches.
 
 
+```{r}
+#| label: fig-rainfall-bar
+#| fig-cap: "Top 10 cities by average daily rainfall (mm)"
+
+top_rainfall <- data %>%
+  group_by(Location) %>%
+  summarise(avg_rain = mean(Rainfall, na.rm = TRUE)) %>%
+  arrange(desc(avg_rain)) %>%
+  slice_head(n = 10)
+
+ggplot(top_rainfall, aes(x = reorder(Location, avg_rain), y = avg_rain)) +
+  geom_col(fill = "burlywood3") +
+  coord_flip() +
+  labs(x = "City", y = "Average Rainfall (mm)")
+```
+
+```{r}
+#| label: tbl-summary-top10
+#| tbl-cap: "Summary of key weather variables in top 10 wettest cities"
+top_cities <- top_rainfall$Location
+
+data %>%
+  filter(Location %in% top_cities) %>%
+  group_by(Location) %>%
+  summarise(
+    `Avg Rainfall` = round(mean(Rainfall), 1),
+    `Avg Temp (3pm)` = round(mean(Temp3pm), 1),
+    `Avg Humidity (3pm)` = round(mean(Humidity3pm), 1),
+    `Avg Pressure (9am)` = round(mean(Pressure9am), 1)
+  ) %>%
+  knitr::kable()
+```
 
