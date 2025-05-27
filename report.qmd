@@ -1,5 +1,15 @@
 ---
-title: "git set go"
-format: html
+title: "Weather Comparison Across Australian Cities"
+author: "Thi Lan Anh Tran, Siddhi Jadhav, Sanch Anand"
+format: pdf
 editor: visual
+toc: true
+toc-title: "Table of Contents"
+toc-depth: 2
+number-sections: true
+cite-method: biblatex
+bibliography: references.bib
 ---
+## Executive Summary
+
+This report analyzes weather patterns across major Australian cities using the [Rattle weather dataset](https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package/data). Key variables such as temperature, rainfall, and humidity,... were compared to uncover regional climate differences. The findings reveal distinct climate characteristics aligned with Australia’s diverse geography. These insights can support planning in agriculture, infrastructure, and public health.
