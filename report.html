@@ -6,8 +6,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Siddhi Jadhav">
+<meta name="author" content="Sanch Anand">
+<meta name="author" content="Thi Lan Anh Tran">
+<meta name="dcterms.date" content="2025-05-27">
 
-<title>git set go</title>
+<title>Git Set Go</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,22 +75,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent">
+<body>
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#loading-libraries-and-reading-the-data" id="toc-loading-libraries-and-reading-the-data" class="nav-link active" data-scroll-target="#loading-libraries-and-reading-the-data"><span class="header-section-number">1</span> Loading Libraries and Reading the Data</a></li>
+  <li><a href="#dropping-high-missing-columns-converting-date-to-date-type-dropping-rows-where-raintomorrow-is-missing" id="toc-dropping-high-missing-columns-converting-date-to-date-type-dropping-rows-where-raintomorrow-is-missing" class="nav-link" data-scroll-target="#dropping-high-missing-columns-converting-date-to-date-type-dropping-rows-where-raintomorrow-is-missing"><span class="header-section-number">2</span> Dropping high-missing columns, Converting ‘Date’ to Date type, Dropping rows where ‘RainTomorrow’ is missing</a></li>
+  <li><a href="#dropping-wind-direction-columns-converting-raintoday-and-raintomorrow-to-binary-01-and-dropping-any-remaining-nas" id="toc-dropping-wind-direction-columns-converting-raintoday-and-raintomorrow-to-binary-01-and-dropping-any-remaining-nas" class="nav-link" data-scroll-target="#dropping-wind-direction-columns-converting-raintoday-and-raintomorrow-to-binary-01-and-dropping-any-remaining-nas"><span class="header-section-number">3</span> Dropping wind direction columns, Converting RainToday and RainTomorrow to binary 0/1 and Dropping any remaining NAs</a></li>
+  <li><a href="#saving-the-cleaned-data" id="toc-saving-the-cleaned-data" class="nav-link" data-scroll-target="#saving-the-cleaned-data"><span class="header-section-number">4</span> Saving the cleaned Data</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">5</span> Results</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">git set go</h1>
+<h1 class="title">Git Set Go</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Siddhi Jadhav </p>
+             <p>Sanch Anand </p>
+             <p>Thi Lan Anh Tran </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 27, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -96,87 +126,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="loading-libraries-and-reading-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="loading-libraries-and-reading-the-data">1. Loading Libraries and Reading the Data</h2>
+<section id="loading-libraries-and-reading-the-data" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Loading Libraries and Reading the Data</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.4     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/weatherAUS.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 145460 Columns: 23
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr   (6): Location, WindGustDir, WindDir9am, WindDir3pm, RainToday, RainTom...
-dbl  (16): MinTemp, MaxTemp, Rainfall, Evaporation, Sunshine, WindGustSpeed,...
-date  (1): Date
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/weatherAUS.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="dropping-high-missing-columns-converting-date-to-date-type-dropping-rows-where-raintomorrow-is-missing" class="level2">
-<h2 class="anchored" data-anchor-id="dropping-high-missing-columns-converting-date-to-date-type-dropping-rows-where-raintomorrow-is-missing">2. Dropping high-missing columns, Converting ‘Date’ to Date type, Dropping rows where ‘RainTomorrow’ is missing</h2>
+<section id="dropping-high-missing-columns-converting-date-to-date-type-dropping-rows-where-raintomorrow-is-missing" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Dropping high-missing columns, Converting ‘Date’ to Date type, Dropping rows where ‘RainTomorrow’ is missing</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Evaporation, <span class="sc">-</span>Sunshine, <span class="sc">-</span>Cloud9am, <span class="sc">-</span>Cloud3pm)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">ymd</span>(Date))</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(RainTomorrow))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Evaporation, <span class="sc">-</span>Sunshine, <span class="sc">-</span>Cloud9am, <span class="sc">-</span>Cloud3pm)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">ymd</span>(Date))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(RainTomorrow))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="dropping-wind-direction-columns-converting-raintoday-and-raintomorrow-to-binary-01-and-dropping-any-remaining-nas" class="level2">
-<h2 class="anchored" data-anchor-id="dropping-wind-direction-columns-converting-raintoday-and-raintomorrow-to-binary-01-and-dropping-any-remaining-nas">3. Dropping wind direction columns, Converting RainToday and RainTomorrow to binary 0/1 and Dropping any remaining NAs</h2>
+<section id="dropping-wind-direction-columns-converting-raintoday-and-raintomorrow-to-binary-01-and-dropping-any-remaining-nas" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Dropping wind direction columns, Converting RainToday and RainTomorrow to binary 0/1 and Dropping any remaining NAs</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>WindGustDir, <span class="sc">-</span>WindDir9am, <span class="sc">-</span>WindDir3pm)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">RainToday =</span> <span class="fu">if_else</span>(RainToday <span class="sc">==</span> <span class="st">"Yes"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">RainTomorrow =</span> <span class="fu">if_else</span>(RainTomorrow <span class="sc">==</span> <span class="st">"Yes"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>WindGustDir, <span class="sc">-</span>WindDir9am, <span class="sc">-</span>WindDir3pm)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">RainToday =</span> <span class="fu">if_else</span>(RainToday <span class="sc">==</span> <span class="st">"Yes"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">RainTomorrow =</span> <span class="fu">if_else</span>(RainTomorrow <span class="sc">==</span> <span class="st">"Yes"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="saving-the-cleaned-data" class="level2">
-<h2 class="anchored" data-anchor-id="saving-the-cleaned-data">4. Saving the cleaned Data</h2>
+<section id="saving-the-cleaned-data" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Saving the cleaned Data</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(data, <span class="st">"data/data_cleaned.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(data, <span class="st">"data/data_cleaned.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="results" class="level1">
-<h1>Results</h1>
+<section id="results" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Results</h1>
 <p>Figure <a href="#fig-temp-boxplot" class="quarto-xref">Figure&nbsp;1</a> displays the 3pm temperature distribution by observation count for the top 10 Australian cities. The tropical, desert, and temperate regions of Australia are clearly distinguished by this research.</p>
 <p>Tropical and desert climate conditions are reflected in the highest and most stable afternoon temperatures found in cities like <strong>Darwin</strong> and <strong>Alice Springs</strong>. Smaller interquartile ranges are seen in these cities, suggesting hot, consistent weather that is typical of the area. Conversely, cities with temperate, coastal climates, such as <strong>Hobart</strong>, <strong>Melbourne</strong>, and <strong>Sydney</strong>, show higher variability and cooler median temperatures. Cities like <strong>Perth</strong> and <strong>Brisbane</strong> have outliers, indicating sporadic excessive temperature events that may be caused by particular weather systems.</p>
 <p>All things considered, the boxplot illustrates how Australia’s varied topography affects temperature distributions. While southern and coastal towns exhibit milder and more diverse climates, northern cities are often hotter and more stable. These findings show how latitude, altitude, and proximity to the coast affect temperature trends and are consistent with the anticipated climatic variation throughout Australia.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Location, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Location)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Location <span class="sc">%in%</span> top10) <span class="sc">%&gt;%</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Location, <span class="at">y =</span> Temp3pm)) <span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"pink"</span>) <span class="sc">+</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"City"</span>, <span class="at">y =</span> <span class="st">"Temperature at 3pm (°C)"</span>) <span class="sc">+</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Location, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Location)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Location <span class="sc">%in%</span> top10) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Location, <span class="at">y =</span> Temp3pm)) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"pink"</span>) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"City"</span>, <span class="at">y =</span> <span class="st">"Temperature at 3pm (°C)"</span>) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-temp-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -190,7 +200,7 @@ Figure&nbsp;1: Distribution of 3pm temperatures across the top 10 Australian cit
 </div>
 </div>
 </div>
-<p>As shown in <a href="#fig-temp-boxplot" class="quarto-xref">Figure&nbsp;1</a> cities such as **Darwin* and <em>Alice Springs</em> experience the highest and most consistent afternoon temperatures. On the other hand, <em>Melbourne</em> and <em>Hobart</em> show cooler and more varied temperature distributions. This supports the expected climatic variation between Australia’s tropical north and temperate south.</p>
+<p>As shown in <a href="#fig-temp-boxplot" class="quarto-xref">Figure&nbsp;1</a> cities such as Darwin and Alice Springs experience the highest and most consistent afternoon temperatures. On the other hand, Melbourne and Hobart show cooler and more varied temperature distributions. This supports the expected climatic variation between Australia’s tropical north and temperate south.</p>
 </section>
 
 </main>

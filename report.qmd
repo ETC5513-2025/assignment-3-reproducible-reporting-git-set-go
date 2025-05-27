@@ -1,17 +1,44 @@
 ---
-title: "git set go"
-format: html
+title: "Git Set Go"
+author: 
+  - Siddhi Jadhav
+  - Sanch Anand
+  - Thi Lan Anh Tran
+date: today
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    df-print: kable
+    code-line-numbers: false
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    fig-cap-location: bottom
+    df-print: kable
+    keep-tex: true
+    code-line-numbers: false
+execute:
+  echo: true
+  warning: false
+  message: false
 editor: visual
 ---
 
-## 1. Loading Libraries and Reading the Data
+# Loading Libraries and Reading the Data
+
+```{r, echo = TRUE}
+library(tidyverse)
+library(ggplot2)
+```
 
 ```{r}
-library(tidyverse)
 data <- read_csv("data/weatherAUS.csv")
 ```
 
-## 2. Dropping high-missing columns, Converting 'Date' to Date type, Dropping rows where 'RainTomorrow' is missing
+# Dropping high-missing columns, Converting 'Date' to Date type, Dropping rows where 'RainTomorrow' is missing
 
 ```{r}
 data <- data %>%
@@ -24,7 +51,7 @@ data <- data %>%
   filter(!is.na(RainTomorrow))
 ```
 
-## 3. Dropping wind direction columns, Converting RainToday and RainTomorrow to binary 0/1 and Dropping any remaining NAs
+# Dropping wind direction columns, Converting RainToday and RainTomorrow to binary 0/1 and Dropping any remaining NAs
 
 ```{r}
 data <- data %>%
@@ -39,7 +66,7 @@ data <- data %>%
 data <- data %>% drop_na()
 ```
 
-## 4. Saving the cleaned Data
+# Saving the cleaned Data
 
 ```{r}
 write_csv(data, "data/data_cleaned.csv")
@@ -70,4 +97,4 @@ data %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-As shown in @fig-temp-boxplot cities such as \*\*Darwin\* and *Alice Springs* experience the highest and most consistent afternoon temperatures. On the other hand, *Melbourne* and *Hobart* show cooler and more varied temperature distributions. This supports the expected climatic variation between Australia's tropical north and temperate south.
+As shown in @fig-temp-boxplot cities such as Darwin and Alice Springs experience the highest and most consistent afternoon temperatures. On the other hand, Melbourne and Hobart show cooler and more varied temperature distributions. This supports the expected climatic variation between Australia's tropical north and temperate south.
