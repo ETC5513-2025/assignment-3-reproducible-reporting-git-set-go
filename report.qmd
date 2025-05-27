@@ -69,3 +69,5 @@ data %>%
   labs(x = "City", y = "Temperature at 3pm (°C)") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
+As shown in @fig-temp-boxplot cities such as \*\*Darwin\* and *Alice Springs* experience the highest and most consistent afternoon temperatures. On the other hand, *Melbourne* and *Hobart* show cooler and more varied temperature distributions. This supports the expected climatic variation between Australia's tropical north and temperate south.
