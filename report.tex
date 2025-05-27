@@ -183,11 +183,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-<<<<<<< HEAD
   pdftitle={Weather Comparison Across Australian Cities},
-=======
-  pdftitle={Git Set Go},
->>>>>>> summary-results
   pdfauthor={Siddhi Jadhav; Sanch Anand; Thi Lan Anh Tran},
   colorlinks=true,
   linkcolor={blue},
@@ -197,29 +193,20 @@
   pdfcreator={LaTeX via pandoc}}
 
 
-<<<<<<< HEAD
 \title{Weather Comparison Across Australian Cities}
-=======
-\title{Git Set Go}
->>>>>>> summary-results
 \author{Siddhi Jadhav \and Sanch Anand \and Thi Lan Anh Tran}
 \date{2025-05-27}
 
 \begin{document}
 \maketitle
 
-<<<<<<< HEAD
 \renewcommand*\contentsname{Table of Contents}
-=======
-\renewcommand*\contentsname{Table of contents}
->>>>>>> summary-results
 {
 \hypersetup{linkcolor=}
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
 
-<<<<<<< HEAD
 \newpage
 
 \section{Executive Summary}\label{executive-summary}
@@ -259,39 +246,11 @@ and Quarto.
 \begin{Highlighting}[]
 \CommentTok{\# Load the dataset}
 \NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"data/weatherAUS.csv"}\NormalTok{)}
-=======
-\section{Loading Libraries and Reading the
-Data}\label{loading-libraries-and-reading-the-data}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
--- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-v dplyr     1.1.4     v readr     2.1.5
-v forcats   1.0.0     v stringr   1.5.1
-v ggplot2   3.5.1     v tibble    3.2.1
-v lubridate 1.9.4     v tidyr     1.3.1
-v purrr     1.0.4     
--- Conflicts ------------------------------------------ tidyverse_conflicts() --
-x dplyr::filter() masks stats::filter()
-x dplyr::lag()    masks stats::lag()
-i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggplot2)}
->>>>>>> summary-results
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-<<<<<<< HEAD
 \CommentTok{\# 1. Drop high{-}missing columns}
 \NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{Evaporation, }\SpecialCharTok{{-}}\NormalTok{Sunshine, }\SpecialCharTok{{-}}\NormalTok{Cloud9am, }\SpecialCharTok{{-}}\NormalTok{Cloud3pm)}
@@ -309,42 +268,11 @@ i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all confl
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# 3. Drop rows where \textquotesingle{}RainTomorrow\textquotesingle{} is missing}
-=======
-\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data/weatherAUS.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Rows: 145460 Columns: 23
--- Column specification --------------------------------------------------------
-Delimiter: ","
-chr   (6): Location, WindGustDir, WindDir9am, WindDir3pm, RainToday, RainTom...
-dbl  (16): MinTemp, MaxTemp, Rainfall, Evaporation, Sunshine, WindGustSpeed,...
-date  (1): Date
-
-i Use `spec()` to retrieve the full column specification for this data.
-i Specify the column types or set `show_col_types = FALSE` to quiet this message.
-\end{verbatim}
-
-\section{Dropping high-missing columns, Converting `Date' to Date type,
-Dropping rows where `RainTomorrow' is
-missing}\label{dropping-high-missing-columns-converting-date-to-date-type-dropping-rows-where-raintomorrow-is-missing}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{Evaporation, }\SpecialCharTok{{-}}\NormalTok{Sunshine, }\SpecialCharTok{{-}}\NormalTok{Cloud9am, }\SpecialCharTok{{-}}\NormalTok{Cloud3pm)}
-
-\NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Date =} \FunctionTok{ymd}\NormalTok{(Date))}
-
->>>>>>> summary-results
 \NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(RainTomorrow))}
 \end{Highlighting}
 \end{Shaded}
 
-<<<<<<< HEAD
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# 4. Drop wind direction columns}
@@ -352,46 +280,24 @@ missing}\label{dropping-high-missing-columns-converting-date-to-date-type-droppi
   \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{WindGustDir, }\SpecialCharTok{{-}}\NormalTok{WindDir9am, }\SpecialCharTok{{-}}\NormalTok{WindDir3pm)}
 
 \CommentTok{\# 5. Convert RainToday and RainTomorrow to binary 0/1}
-=======
-\section{Dropping wind direction columns, Converting RainToday and
-RainTomorrow to binary 0/1 and Dropping any remaining
-NAs}\label{dropping-wind-direction-columns-converting-raintoday-and-raintomorrow-to-binary-01-and-dropping-any-remaining-nas}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{WindGustDir, }\SpecialCharTok{{-}}\NormalTok{WindDir9am, }\SpecialCharTok{{-}}\NormalTok{WindDir3pm)}
-
->>>>>>> summary-results
 \NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{mutate}\NormalTok{(}
     \AttributeTok{RainToday =} \FunctionTok{if\_else}\NormalTok{(RainToday }\SpecialCharTok{==} \StringTok{"Yes"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
     \AttributeTok{RainTomorrow =} \FunctionTok{if\_else}\NormalTok{(RainTomorrow }\SpecialCharTok{==} \StringTok{"Yes"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
 \NormalTok{  )}
 
-<<<<<<< HEAD
 \CommentTok{\# 6. Drop any remaining NAs}
-=======
->>>>>>> summary-results
 \NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-<<<<<<< HEAD
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# 7. Save cleaned data}
-=======
-\section{Saving the cleaned Data}\label{saving-the-cleaned-data}
-
-\begin{Shaded}
-\begin{Highlighting}[]
->>>>>>> summary-results
 \FunctionTok{write\_csv}\NormalTok{(data, }\StringTok{"data/data\_cleaned.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-<<<<<<< HEAD
 \section{Methodology}\label{methodology}
 
 The dataset used for this analysis, weatherAUS.csv, contains over
@@ -437,45 +343,6 @@ in individual branches.
   \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{fill =} \StringTok{"burlywood3"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"City"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Average Rainfall (mm)"}\NormalTok{)}
-=======
-\section{Results}\label{results}
-
-Figure Figure~\ref{fig-temp-boxplot} displays the 3pm temperature
-distribution by observation count for the top 10 Australian cities. The
-tropical, desert, and temperate regions of Australia are clearly
-distinguished by this research.
-
-Tropical and desert climate conditions are reflected in the highest and
-most stable afternoon temperatures found in cities like \textbf{Darwin}
-and \textbf{Alice Springs}. Smaller interquartile ranges are seen in
-these cities, suggesting hot, consistent weather that is typical of the
-area. Conversely, cities with temperate, coastal climates, such as
-\textbf{Hobart}, \textbf{Melbourne}, and \textbf{Sydney}, show higher
-variability and cooler median temperatures. Cities like \textbf{Perth}
-and \textbf{Brisbane} have outliers, indicating sporadic excessive
-temperature events that may be caused by particular weather systems.
-
-All things considered, the boxplot illustrates how Australia's varied
-topography affects temperature distributions. While southern and coastal
-towns exhibit milder and more diverse climates, northern cities are
-often hotter and more stable. These findings show how latitude,
-altitude, and proximity to the coast affect temperature trends and are
-consistent with the anticipated climatic variation throughout Australia.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{top10 }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{count}\NormalTok{(Location, }\AttributeTok{sort =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{slice\_head}\NormalTok{(}\AttributeTok{n =} \DecValTok{10}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pull}\NormalTok{(Location)}
-
-\NormalTok{data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(Location }\SpecialCharTok{\%in\%}\NormalTok{ top10) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Location, }\AttributeTok{y =}\NormalTok{ Temp3pm)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{fill =} \StringTok{"pink"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"City"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Temperature at 3pm (°C)"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
->>>>>>> summary-results
 \end{Highlighting}
 \end{Shaded}
 
@@ -483,7 +350,6 @@ consistent with the anticipated climatic variation throughout Australia.
 
 \centering{
 
-<<<<<<< HEAD
 \includegraphics{report_files/figure-pdf/fig-rainfall-bar-1.pdf}
 
 }
@@ -551,6 +417,67 @@ Wollongong & 3.5 & 19.9 & 65.1 & 1018.1 \\
 
 \end{longtable}
 
+\section{Results}\label{results}
+
+Figure Figure~\ref{fig-temp-boxplot} displays the 3pm temperature
+distribution by observation count for the top 10 Australian cities. The
+tropical, desert, and temperate regions of Australia are clearly
+distinguished by this research.
+
+Tropical and desert climate conditions are reflected in the highest and
+most stable afternoon temperatures found in cities like \textbf{Darwin}
+and \textbf{Alice Springs}. Smaller interquartile ranges are seen in
+these cities, suggesting hot, consistent weather that is typical of the
+area. Conversely, cities with temperate, coastal climates, such as
+\textbf{Hobart}, \textbf{Melbourne}, and \textbf{Sydney}, show higher
+variability and cooler median temperatures. Cities like \textbf{Perth}
+and \textbf{Brisbane} have outliers, indicating sporadic excessive
+temperature events that may be caused by particular weather systems.
+
+All things considered, the boxplot illustrates how Australia's varied
+topography affects temperature distributions. While southern and coastal
+towns exhibit milder and more diverse climates, northern cities are
+often hotter and more stable. These findings show how latitude,
+altitude, and proximity to the coast affect temperature trends and are
+consistent with the anticipated climatic variation throughout Australia.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{top10 }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(Location, }\AttributeTok{sort =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{slice\_head}\NormalTok{(}\AttributeTok{n =} \DecValTok{10}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pull}\NormalTok{(Location)}
+
+\NormalTok{data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(Location }\SpecialCharTok{\%in\%}\NormalTok{ top10) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Location, }\AttributeTok{y =}\NormalTok{ Temp3pm)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{fill =} \StringTok{"pink"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"City"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Temperature at 3pm (°C)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{report_files/figure-pdf/fig-temp-boxplot-1.pdf}
+
+}
+
+\caption{\label{fig-temp-boxplot}Distribution of 3pm temperatures across
+the top 10 Australian cities by observation count, highlighting
+differences between tropical and temperate regions.}
+
+\end{figure}%
+
+As shown in Figure~\ref{fig-temp-boxplot} cities such as Darwin and
+Alice Springs experience the highest and most consistent afternoon
+temperatures. On the other hand, Melbourne and Hobart show cooler and
+more varied temperature distributions. This supports the expected
+climatic variation between Australia's tropical north and temperate
+south.
+
 \section{Discussion}\label{discussion}
 
 This analysis highlights the significant climatic diversity across
@@ -576,9 +503,9 @@ Australian cities:
   contribute to the region's tropical climate and higher rainfall.
 \item
   \textbf{Temperature Distribution}: The boxplot reinforces (see
-  \textbf{?@fig-temp-boxplot}) how geography affects temperature: inland
-  cities are hot and stable, while southern cities are cooler and more
-  variable. Outliers and wider spreads reflect occasional weather
+  Figure~\ref{fig-temp-boxplot}) how geography affects temperature:
+  inland cities are hot and stable, while southern cities are cooler and
+  more variable. Outliers and wider spreads reflect occasional weather
   extremes in cities like Melbourne and Sydney.
 \end{itemize}
 
@@ -639,24 +566,6 @@ New York, 2016.
 Young JS (2017). ``Weather Dataset (Rattle Package).'' Kaggle Datasets.
 Retrieved from
 https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package/data
-=======
-\includegraphics{report_files/figure-pdf/fig-temp-boxplot-1.pdf}
-
-}
-
-\caption{\label{fig-temp-boxplot}Distribution of 3pm temperatures across
-the top 10 Australian cities by observation count, highlighting
-differences between tropical and temperate regions.}
-
-\end{figure}%
-
-As shown in Figure~\ref{fig-temp-boxplot} cities such as Darwin and
-Alice Springs experience the highest and most consistent afternoon
-temperatures. On the other hand, Melbourne and Hobart show cooler and
-more varied temperature distributions. This supports the expected
-climatic variation between Australia's tropical north and temperate
-south.
->>>>>>> summary-results
 
 
 
