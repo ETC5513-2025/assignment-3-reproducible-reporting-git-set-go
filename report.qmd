@@ -34,12 +34,3 @@ This analysis highlights the significant climatic diversity across Australian ci
 ## Conclusion
 
 In summary, the climate of Australian cities varies significantly by location. Northern and inland areas such as Darwin and Alice Springs are warmer and more stable in temperature, while southern and coastal cities like Melbourne, Hobart, and Sydney exhibit cooler, more variable weather. High rainfall is concentrated in tropical and coastal regions, confirming expected climate zones. These findings align with known climate patterns across the country.
-
-## Recommendations
-
-- **For Climate Planning**: City planners and infrastructure developers should consider local rainfall and temperature variability when designing drainage systems, buildings, and energy systems—especially in high-rainfall cities like Cairns and Darwin.
-
-- **For Tourism and Lifestyle Choices**: Tourists and residents seeking stable warm weather may prefer Darwin or Alice Springs. Those sensitive to temperature variability may find southern cities less comfortable.
-
-- **For Future Research**: Further analysis using seasonal breakdowns and more cities can enhance understanding of microclimates. Incorporating wind, storm frequency, and extreme weather events would also add value.
-
