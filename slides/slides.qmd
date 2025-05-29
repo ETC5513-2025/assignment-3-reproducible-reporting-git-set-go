@@ -1,0 +1,99 @@
+---
+title: "Weather Comparison Across Australian Cities"
+author: 
+  - Siddhi Jadhav
+  - Sanch Anand
+  - Thi Lan Anh Tran
+format: 
+  revealjs:
+    toc: true
+    slide-number: true
+    theme: solarized
+    transition: fade
+    center-title-slide: true
+    incremental: true
+editor: visual
+---
+
+------------------------------------------------------------------------
+
+## Problem Introduction
+
+-   This report compares weather characteristics across ten Australian cities.
+-   The dataset includes over 10 years of weather observations.
+-   Objective: Compare key weather variables across cities to uncover climate patterns and implications.Key variables of interest are temperature, rainfall, humidity, and pressure.
+
+------------------------------------------------------------------------
+
+## Dataset Description
+
+-   *Source*: Rattle Weather Dataset on Kaggle\
+-   *Coverage*: 2008–2017 (\~10 years)\
+-   *Stations*: 49 Australian cities\
+-   *Variables*:
+    -   Rainfall, Temp3pm, Humidity3pm\
+    -   Pressure9am, RainToday, RainTomorrow\
+    -   Metadata: Date, Location
+
+![THE DATASET](images/dataset_part1.png){width="100%" height="400px"}
+
+------------------------------------------------------------------------
+
+## Methodology (1/2)
+
+-   Dropped columns with excessive missing values:
+    -   Evaporation, Sunshine, Cloud9am, Cloud3pm
+-   Dropped Wind Direction variables
+-   Converted RainToday/RainTomorrow to binary (0/1)
+-   Removed rows with missing values
+
+![](images/method1.png){width="75%"}
+
+------------------------------------------------------------------------
+
+## Methodology (2/2)
+
+-   Selected four variables to analyze climatic variation:
+    -   Rainfall → Precipitation patterns
+    -   Temp3pm → Daytime temperature
+    -   Humidity3pm → Moisture in the air
+    -   Pressure9am → Atmospheric pressure patterns
+
+![](images/method2.png){width="75%"}
+
+------------------------------------------------------------------------
+
+## Results (1/2)
+
+-   **Temperature Patterns**:
+    -   Cities like Darwin and Alice Springs have the highest and most stable afternoon temperatures.
+    -   Cities like Hobart and Sydney show greater variation and cooler median temperatures.
+-   **Climate Zones**:
+    -   Tropical and desert regions = stable, high temperatures.
+    -   Temperate/coastal cities = cooler, more variable temperatures.
+
+------------------------------------------------------------------------
+
+## Results (2/2)
+
+-   **Boxplot Insights**: Darwin: Hot, stable temperatures. Hobart, Melbourne, Sydney: Cooler, variable. Perth, Brisbane: Outliers indicate extremes.
+
+![](images/results.png){width="50%"}
+
+------------------------------------------------------------------------
+
+## Conclusion & Recommendations
+
+The climate of Australian cities varies significantly by location - Northern and inland areas: warmer and more stable in temperature - Southern and coastal cities: cooler, more variable weather.
+
+-   **For Planners**
+-   **For Tourists**
+-   **For Research**:
+    -   Incorporate Time Dimension
+    -   Visualize More Variables
+    -   Explore Extreme Events
+    -   Forecast rain tomorrow
+
+------------------------------------------------------------------------
+
+# Thank You

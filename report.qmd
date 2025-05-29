@@ -27,18 +27,17 @@ editor: visual
 
 # Executive Summary
 
-This report analyzes weather patterns across major Australian cities using the [Rattle weather dataset](https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package/data). 
-Key variables such as temperature, rainfall, and humidity were compared to uncover regional climate differences. The findings reveal distinct climate characteristics aligned with Australia’s diverse geography. These insights can support climate planning, tourism, lifestyle decisions, and future research.
+This report analyzes weather patterns across major Australian cities using the [Rattle weather dataset](https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package/data). Key variables such as temperature, rainfall, and humidity were compared to uncover regional climate differences. The findings reveal distinct climate characteristics aligned with Australia’s diverse geography. These insights can support climate planning, tourism, lifestyle decisions, and future research.
 
 # Introduction
 
-Australia is known for its diverse climates, ranging from tropical in the north to temperate in the south. This variability impacts agriculture, urban planning, and public health. 
+Australia is known for its diverse climates, ranging from tropical in the north to temperate in the south. This variability impacts agriculture, urban planning, and public health.
 
-In this report, we compare weather characteristics across ten Australian cities using daily data from the weatherAUS dataset. The selected cities represent different climate zones, including tropical (Darwin), arid (Adelaide), and temperate (Melbourne, Hobart). The dataset includes over 10 years of weather observations, providing a robust basis for analysis. Key variables of interest are temperature, rainfall, humidity, and pressure. 
+In this report, we compare weather characteristics across ten Australian cities using daily data from the weatherAUS dataset. The selected cities represent different climate zones, including tropical (Darwin), arid (Adelaide), and temperate (Melbourne, Hobart). The dataset includes over 10 years of weather observations, providing a robust basis for analysis. Key variables of interest are temperature, rainfall, humidity, and pressure.
 
 These metrics reflect both short- and long-term climate trends. Through visualization and descriptive statistics, we uncover patterns that align with geographical locations. This work aims to support informed, location-specific decision-making. All analysis is reproducible using R and Quarto.
 
-# Cleaning the data 
+# Cleaning the data
 
 ```{r}
 #| message: false
@@ -92,7 +91,6 @@ data <- data %>% drop_na()
 # 7. Save cleaned data
 write_csv(data, "data/data_cleaned.csv")
 ```
-
 
 # Methodology
 
@@ -164,7 +162,6 @@ data %>%
 
 As shown in @fig-temp-boxplot cities such as Darwin and Alice Springs experience the highest and most consistent afternoon temperatures. On the other hand, Melbourne and Hobart show cooler and more varied temperature distributions. This supports the expected climatic variation between Australia's tropical north and temperate south.
 
-
 # Discussion
 
 This analysis highlights the significant climatic diversity across Australian cities:
@@ -196,21 +193,11 @@ In summary, the climate of Australian cities varies significantly by location. N
     -   **Explore Extreme Events**: Analyse maximum rainfall or temperature to assess weather extremes and risks.
 
     -   **Forecast rain tomorrow**: Predict whether it will rain tomorrow based on other variables from previous records.
-    
+
 # References
 
-Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R,
-  Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller
-  E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V,
-  Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to
-  the tidyverse.” _Journal of Open Source Software_, *4*(43), 1686.
-  doi:10.21105/joss.01686 <https://doi.org/10.21105/joss.01686>.
-  
-H. Wickham. ggplot2: Elegant Graphics for Data Analysis.
-  Springer-Verlag New York, 2016.
-  
+Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” *Journal of Open Source Software*, *4*(43), 1686. doi:10.21105/joss.01686 <https://doi.org/10.21105/joss.01686>.
+
+H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.
+
 Young JS (2017). “Weather Dataset (Rattle Package).” Kaggle Datasets. Retrieved from https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package/data
-
-
-
-
