@@ -26,40 +26,30 @@ editor: visual
 ------------------------------------------------------------------------
 
 ## Dataset Description
-
--   *Source*: Rattle Weather Dataset on Kaggle\
--   *Coverage*: 2008–2017 (\~10 years)\
--   *Stations*: 49 Australian cities\
--   *Variables*:
-    -   Rainfall, Temp3pm, Humidity3pm\
-    -   Pressure9am, RainToday, RainTomorrow\
-    -   Metadata: Date, Location
-
-![THE DATASET](images/dataset_part1.png){width="100%" height="400px"}
+![](images/dataset_part1.png){width="100%" height="300px"}
+    *Source*: Rattle Weather Dataset on Kaggle  
+-   *Coverage*: 2008–2017 (~10 years)  
+-   *Stations*: 49 Australian cities  
+-   *Variables*: Rainfall, Temp3pm, Humidity3pm, Pressure9am, RainToday, RainTomorrow, Date, Location
 
 ------------------------------------------------------------------------
 
 ## Methodology (1/2)
+![](images/method1.png){width="100%" height="300px"}
 
--   Dropped columns with excessive missing values:
-    -   Evaporation, Sunshine, Cloud9am, Cloud3pm
--   Dropped Wind Direction variables
--   Converted RainToday/RainTomorrow to binary (0/1)
--   Removed rows with missing values
-
-![](images/method1.png){width="75%"}
+- Dropped columns with excessive missing values
+- Evaporation, Sunshine, Cloud9am, Cloud3pm
+- Dropped Wind Direction variables
+- Converted RainToday/RainTomorrow to binary (0/1)
 
 ------------------------------------------------------------------------
 
 ## Methodology (2/2)
+![](images/method2.png){width="100%" height="300px"}
 
--   Selected four variables to analyze climatic variation:
-    -   Rainfall → Precipitation patterns
-    -   Temp3pm → Daytime temperature
-    -   Humidity3pm → Moisture in the air
-    -   Pressure9am → Atmospheric pressure patterns
-
-![](images/method2.png){width="75%"}
+- Selected four variables to analyze climatic variation
+  -   Rainfall → Precipitation patterns, Temp3pm → Daytime temperature
+  -   Humidity3pm → Moisture in the air, Pressure9am → Atmospheric pressure patterns
 
 ------------------------------------------------------------------------
 
@@ -76,24 +66,38 @@ editor: visual
 
 ## Results (2/2)
 
+![](images/results.png){width="100%" height="400px"}
+
 -   **Boxplot Insights**: Darwin: Hot, stable temperatures. Hobart, Melbourne, Sydney: Cooler, variable. Perth, Brisbane: Outliers indicate extremes.
 
-![](images/results.png){width="50%"}
 
 ------------------------------------------------------------------------
 
 ## Conclusion & Recommendations
 
-The climate of Australian cities varies significantly by location - Northern and inland areas: warmer and more stable in temperature - Southern and coastal cities: cooler, more variable weather.
+:::{.columns}
+::: {.column width="55%"}
+
+- The climate of Australian cities varies significantly by location 
+- Northern and inland areas: warmer and more stable in temperature 
+- Southern and coastal cities: cooler, more variable weather.
+
+
+:::
+::: {.column width="45%"}
 
 -   **For Planners**
 -   **For Tourists**
--   **For Research**:
+-   **For Research**
     -   Incorporate Time Dimension
     -   Visualize More Variables
     -   Explore Extreme Events
     -   Forecast rain tomorrow
 
+:::
+:::
 ------------------------------------------------------------------------
 
-# Thank You
+## Thank You
+
+ANY QUESTIONS?
